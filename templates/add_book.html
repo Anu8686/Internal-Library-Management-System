@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book - Library Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container add-book-page">
+        <nav class="nav-bar">
+            <a href="{{ url_for('index') }}">Home</a>
+            <span class="nav-divider">|</span>
+            <a href="{{ url_for('books') }}">View Books</a>
+        </nav>
+        <h1 class="add-book-title">
+            <span class="icon-books">&#128218;</span>
+            Add New Book
+        </h1>
+        <form method="post" class="add-book-form">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input id="title" name="title" type="text" required placeholder="Book Title">
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input id="author" name="author" type="text" required placeholder="Author Name">
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <input id="year" name="year" type="number" min="0" max="9999" placeholder="e.g. 2020">
+            </div>
+            <button type="submit" class="add-btn">Add Book</button>
+        </form>
+    </div>
+</body>
+</html>

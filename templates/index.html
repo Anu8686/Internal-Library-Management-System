@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Library Management System{% endblock %}
+
+{% block content %}
+<div class="hero-bg">
+    <div class="hero-content">
+        <img src="{{ url_for('static', filename='rocket.svg') }}" alt="Rocket" class="hero-rocket">
+        <h3 class="blue-subhead">For Employees & Employers</h3>
+        <h1 class="hero-title">
+            Internal Library<br>
+            Management <span class="hero-highlight">System</span>
+        </h1>
+        <div class="hero-links">
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('books') }}" class="hero-btn">📚 View Library</a>
+                <a href="{{ url_for('add_book') }}" class="hero-btn ghost">➕ Add Book</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="hero-btn">Login</a>
+                <a href="{{ url_for('register') }}" class="hero-btn ghost">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

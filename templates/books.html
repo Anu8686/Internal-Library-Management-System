@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}My Books - Library Management System{% endblock %}
+
+{% block content %}
+<div class="container books-page">
+    <h1 class="books-title">
+        <span class="icon-books">📚</span>
+        My Library
+    </h1>
+
+    <div class="books-table-container">
+        {% if books %}
+            <table class="books-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Year</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td><strong>{{ book['title'] }}</strong></td>
+                        <td>{{ book['author'] }}</td>
+                        <td>{{ book['year'] if book['year'] else 'N/A' }}</td>
+                        <td>
+                            <form method="post" action="{{ url_for('delete_book', book_id=book['id']) }}" style="display:inline;">
+                                <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this book?');">🗑️ Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="empty">📖 No books in your library yet. <a href="{{ url_for('add_book') }}">Add your first book!</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
